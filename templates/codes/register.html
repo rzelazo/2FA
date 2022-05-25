@@ -1,0 +1,37 @@
+{% extends "base_bootstrap.html" %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+    <title>Log in</title>
+{% endblock %}
+
+{% block body %}
+
+    <div class="login_block text-white">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <h1 class="display-1" style="font-size: 2.5em">Sign up:</h1>
+            </div>
+        </div>
+
+        <div class="row justify-content-center align-items-center" style="margin-top: 100px; margin-bottom: 100px">
+            {% if error_message %}
+            <div class="col-8 alert-danger error-message">
+                {{ error_message }}
+            </div>
+            {% endif %}
+            <div class="col-8">
+                <form method="post" action="" autocomplete="off">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <input type="submit" class="btn btn-success" value="Sign up"/>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8"></div>
+            <div class="col-2"><a href="{% url 'codes:login_first' %}">Log in</a></div>
+        </div>
+    </div>
+
+{% endblock %}

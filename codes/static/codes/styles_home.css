@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    font-family: Rubik, sans-serif;
+    font-size: 1em;
+    background-color: rgb(245, 245, 245);
+}
+
+h1 {
+    font-family: Spectral, serif;
+    font-size: 3em;
+}
+
+
+ul.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 10%;
+    height: 100%;
+    background-color: rgb(205, 205, 205);
+    position: fixed;
+    overflow: auto;
+    left: -7%;
+    transition: 1s;
+}
+
+ul.navbar:hover {
+    left: 0;
+}
+
+ul.navbar li a {
+    display: block;
+    padding: 8px 16px;
+    background-color: rgb(205, 205, 205);
+    color: hsl(0, 0, 20);
+    font-family: Helvetica, sans-serif;
+    font-size: 1.5em;
+    text-decoration: none;
+    position: relative;
+}
+
+ul.navbar li a:hover {
+    background-color: hsl(0, 0%, 32%);
+    color: white;
+    cursor: pointer;
+}
+
+ul.navbar li a:active {
+    background-color: rgb(25, 76, 47);
+    color: white;
+    cursor: pointer;
+}
+
+ul.navbar li a.active {
+    background-color: rgb(35, 108, 67);
+    color: white;
+}
+
+.container {
+    margin-left: 10%;
+    padding: 20px;
+    text-align: justify;
+}
+
+i {
+    font-size: 1em;
+    position: absolute;
+    right: 10px;
+}
+
+i.fa-info {
+    right: 17px;
+}

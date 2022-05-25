@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+    .login_block {
+        position: absolute;
+        top: 10%;
+        left: 35%;
+        width: 30%;
+        min-height: 60%;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        background-color: rgb(195, 195, 195);
+        border-radius: 50px;
+    }
+
+    .error-message {
+        border-radius: 5px;
+        border: 1px solid #da9dab;
+        margin-bottom: 20px;
+    }
+    </style>
+
+    {% block head %}{% endblock %}
+
+</head>
+<body>
+
+<div class="container">
+    {% block body %}{% endblock %}
+</div>
+
+</body>
+</html>

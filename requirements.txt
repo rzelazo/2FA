@@ -1,0 +1,4 @@
+Django~=3.2.5
+twilio~=7.9.1
+django-crispy-forms==1.8.1
+python-decouple==3.6

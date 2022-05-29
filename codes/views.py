@@ -4,6 +4,7 @@ from django.views import View
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login
 from django.urls import reverse
+from django.conf import settings
 from .forms import CodeForm
 from users.models import CustomUser
 from django.shortcuts import get_object_or_404
@@ -11,9 +12,10 @@ from .utils import send_sms
 from users.forms import RegisterUserForm
 from .models import Code
 
-import logging
-
-logging.basicConfig(level=logging.DEBUG)
+if settings.DEBUG:
+    # Log to console if DEBUG is True
+    import logging
+    logging.basicConfig(level=logging.DEBUG)
 
 
 class HomeView(LoginRequiredMixin, View):
@@ -31,6 +33,9 @@ class HomeView(LoginRequiredMixin, View):
 
 
 class FirstFactorAuthenticationView(View):
+    """
+    View for the first authentication factor.
+    """
 
     def get(self, request):
         """
@@ -60,7 +65,7 @@ class FirstFactorAuthenticationView(View):
 
 class SecondFactorAuthenticationView(View):
     """
-    Second authentication factor.
+    View for the second authentication factor.
     """
 
     def get(self, request):
@@ -75,8 +80,9 @@ class SecondFactorAuthenticationView(View):
 
             user.code.save()  # 're-saving' the code instance generates a new verification code number
 
-            # print the newly generated verification code to the console
-            logging.debug(f"Verification code: {user.code.number}")
+            if settings.DEBUG:
+                # print the newly generated verification code to the console
+                logging.debug(f"Verification code: {user.code.number}")
 
             # send SMS with verification code to the user's phone
             send_sms(user_code=user.code.number, phone_number=user.phone_number)
@@ -111,12 +117,12 @@ class SecondFactorAuthenticationView(View):
 
 class RegistrationView(View):
     """
-    Register new user.
+    View for registering a new user.
     """
 
     def get(self, request):
         """
-        Show user the blank registration form.
+        Show the blank registration form.
         """
         form = RegisterUserForm()
         return render(request, template_name='codes/register.html', context={'form': form})
@@ -136,7 +142,7 @@ class RegistrationView(View):
 
 class RegisterVerifyView(View):
     """
-    Verify user's phone number (so that the user cannot register
+    View for verifying the user's phone number (so that the user cannot register
      under a phone number he does not have access to).
     """
 
@@ -148,12 +154,13 @@ class RegisterVerifyView(View):
         if user_data:
 
             code_form = CodeForm()
-            # manually generate verification code (without binding it to the user - he doesn't exist yet)
+            # manually generate verification code (without binding it to the user - because he has not been created yet)
             valid_code = next(Code.gen_code)
             request.session['valid_code'] = valid_code
 
-            # print the newly generated verification code to the console
-            logging.debug(f"Verification code: {valid_code}")
+            if settings.DEBUG:
+                # print the newly generated verification code to the console
+                logging.debug(f"Verification code: {valid_code}")
 
             # send SMS with verification code to the user's phone
             send_sms(user_code=valid_code, phone_number=user_data.get('phone_number'))
@@ -180,9 +187,12 @@ class RegisterVerifyView(View):
                 # if user verified his phone number - register him and log him into the current session
                 reg_form = RegisterUserForm(user_data)
                 if reg_form.is_valid():
+                    # create and save new user in the database
                     user = reg_form.save(commit=True)
+                    # log user into current session
                     login(request, user)
                     request.session['registered'] = True
+                    # clean up the session
                     request.session.pop('user_data')
                     return redirect(reverse('codes:home'))
 

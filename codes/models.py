@@ -1,11 +1,16 @@
 from django.db import models
 from django.conf import settings
-import random
+import secrets
 
 
 def _gen_code(N_DIGITS):
+    """
+    Generator function for generating verification codes.
+    :param N_DIGITS: number of digits in the verification code
+    :return: generated verification code
+    """
     while True:
-        yield "".join(str(random.randint(0, 9)) for i in range(N_DIGITS))
+        yield str(secrets.randbelow(10 ** N_DIGITS)).rjust(N_DIGITS, '0')
 
 
 class Code(models.Model):

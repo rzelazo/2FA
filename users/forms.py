@@ -17,6 +17,10 @@ class RegisterUserForm(UserCreationForm):
         fields = ['username', 'phone_number', 'password1', 'password2']
 
     def clean_phone_number(self):
+        """
+        Validate phone number submitted by the user.
+        :return: validated phone_number
+        """
         phone_number = self.cleaned_data['phone_number']
         if not phone_number.startswith('+48'):
             raise ValidationError("Phone number must start with +48 prefix")

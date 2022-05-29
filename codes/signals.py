@@ -12,7 +12,6 @@ def post_save_generate_code(sender, instance, created, *args, **kwargs):
     :param sender: the model class (CustomUser)
     :param instance: CustomUser instance the .save() method was called upon
     :param created: True if new record was created
-    :return:
     """
     if created:
         # create Code instance and bind the created CustomUser instance to it

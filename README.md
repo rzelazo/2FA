@@ -75,7 +75,18 @@ gdzie `<numer portu>` jest opcjonalnym parametrem definiującym to, na którym p
 ### Jeżeli wprowadzony kod weryfikacyjny jest poprawny - użytkownik zostaje zalogowany do bieżącej sesji i uzyskuje dostęp do serwisu:
 ![image](https://user-images.githubusercontent.com/62251572/170883378-1a5f0d43-8e79-4676-94ee-f5654fae3af1.png)
 
-### Jeżeli wprowadzony kod weryfikacyjny nie jest poprawny - wygenerowany zostaje nowy kod weryfikacyjny, a stary zostaje unieważniony. Nowo wygenerowany kod wysyłany jest do użytkownika w kolejnej wiadomości SMS:
+### Jeżeli wprowadzony kod weryfikacyjny nie jest poprawny - wygenerowany zostaje nowy kod weryfikacyjny, a stary zostaje unieważniony:
+Nowo wygenerowany kod wysyłany jest do użytkownika w kolejnej wiadomości SMS
 ![image](https://user-images.githubusercontent.com/62251572/170883505-ea041e6e-0f8a-491e-aaf8-10ce9ba7dd1c.png)
 
+### Strona rejestracji nowego użytkownika:
+(wymaga podania numeru telefonu, na który wysyłane będą wiadomości SMS z kodem weryfikacyjnym)
+![image](https://user-images.githubusercontent.com/62251572/170883632-debe8cb8-29d2-424d-8804-c590bc38f843.png)
 
+### Rejestracja nowego użytkownika wymaga weryfikacji podanego numeru telefonu w sposób analogiczny do działania drugiego czynnika uwierzytelniania:
+![image](https://user-images.githubusercontent.com/62251572/170883760-f28042d8-ec75-4516-b0da-c8cfc99aa12b.png)
+![image](https://user-images.githubusercontent.com/62251572/170883794-87aaa4c8-b64c-4367-8926-143888cb077a.png)
+![image](https://user-images.githubusercontent.com/62251572/170883809-2b69072c-082f-49df-8f53-cffc9c58161e.png)
+
+### Po pomyślnym zarejestrowaniu nowy użytkownik zostaje zalogowany do bieżącej sesji i uzyskuje dostęp do serwisu:
+![image](https://user-images.githubusercontent.com/62251572/170883857-d1c2f173-16f2-4a24-b6f1-d2873b3995e2.png)
